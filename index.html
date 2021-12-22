@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <meta name="copyright" content="Trinity Prime , https://trinity1357.github.io">
+
+  <title>House Payment Calculator</title>
+
+  <link rel="stylesheet" href="../test/assets/vendor/animate/animate.css">
+
+  <link rel="stylesheet" href="../test/assets/css/bootstrap.css">
+
+  <link rel="stylesheet" href="../test/assets/css/maicons.css">
+
+  <link rel="stylesheet" href="../test/assets/vendor/owl-carousel/css/owl.carousel.css">
+
+  <link rel="stylesheet" href="../test/assets/css/theme.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+  <!-- Back to top button -->
+  <div class="back-to-top"></div>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+      <div class="container">
+        <a href="index.html" class="navbar-brand">Trinity<span class="text-primary">Prime.</span></a>
+
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-collapse collapse" id="navbarContent">
+          <ul class="navbar-nav ml-lg-4 pt-3 pt-lg-0">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="services.html" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item active">
+              <a href="blog.html" class="nav-link">Posts</a>
+            </li>
+            <li class="nav-item">
+              <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+          </ul>
+
+          <div class="ml-auto">
+            <a href="#" class="btn btn-outline rounded-pill">Get a Quote</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-section pt-5">
+      <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ul class="breadcrumb p-0 mb-0 bg-transparent">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
+            <li class="breadcrumb-item active">monthly payment of house estimator</li>
+          </ul>
+        </nav>
+        
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="blog-single-wrap">
+              <div class="header">
+                <div class="post-thumb">
+                  <img src="../test/assets/img/house/housing.png" alt="beautiful house">
+                </div>
+                <div class="meta-header">
+                  <div class="post-author">
+                    <div class="avatar">
+                      <img src="../test/assets/img/logoprime.png" alt="Trinity Prime">
+                    </div>
+                    by <a href="#">Trinity Prime</a>
+                  </div>
+  
+                </div>
+              </div>
+              <h1 class="post-title">How to calculate monthly house payment?</h1>
+              <div class="post-meta">
+                <div class="post-date">
+                  <span class="icon">
+                    <span class="mai-book-outline"></span>
+                </div>
+                <div class="post-comment-count ml-2">
+                   <p>simple guide to estimate house payment for monthly basis</p>
+                </div>
+              </div>
+              <!-- calculator form start -->
+              <form>
+                <div class="form-group">
+                  <label for="exampleLoanAmount">Loan Amount</label>
+                  <input type="number" class="form-control" id="loan_amount" aria-describedby="emailHelp" placeholder="Enter the payment amount" value="" onchange="updatechart()">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInterestRate">Interest Rate</label>
+                  <input type="number" class="form-control" id="interest_rate" placeholder="Enter the rate of interest" value="" onchange="updatechart()">
+                </div>
+                <div class="form-group">
+                  <label for="exampleTimePeriod">Time Period</label>
+                  <input type="number" class="form-control" id="number_of_years" placeholder="Enter time in years" value="" onchange="updatechart()">
+                </div>
+                <button type="button" onclick="periodic_monthly_payments()" class="btn btn-primary mr-4">Calculate</button>
+                <button type="button" onclick="pmt_reset()" class="btn btn-primary">Clear</button>
+              </form>
+              <!-- calculator result -->
+              <p class="text-lg mt-4">Monthly payment is : <span><p id="pmt_result" class="text-lg"></p></span></p>
+              <!-- calculator form end -->
+              <br>
+              <br>
+              <div class="guide">
+                <p>This guide will let you know how to calculate monthly house payment for you.Use the calculator to derive the pmt of your house.</p>
+                <p>By using monthly payment formula plug in your values in place of variables and calculate the monthly payment value of your house.</p>
+                <div class="post-thumb">
+                  <img src="../test/assets/img/house/monthly house payment formula.png" alt="monthly payment formula for house" style="max-width: 100%; max-height: 100%;">
+                </div>
+                <p class="text-md mt-4">where MP = monthly payment, MI = monthly interest rate, PA = principal amount or the loan amount and n = number of monthly payments</p>
+              </div>
+              <div class="container mt-5">
+                <p>Take a look at the pie chart to get insights about the distribution across related parameters (loan amount, monthly rate of interest on the amount, time period applied on the loan).</p>
+              </div>
+              <div class="container w-50 p-3">
+                <canvas id="myChart"></canvas>
+              </div>
+              <div class="post-content">
+                <p>Each slice of the pie chart for house pmt calculation represents the amount of percent assigned to every variable associated with pmt formula for house.</p>
+                <blockquote class="quote"> This monthly house payment calculator is not just limited to estimating monthly pay of houses but you can also get payment value on any other things that you want to purchase through loan.
+                <br><span class="text-sm">― Note</span></blockquote>
+                <p>The rate at which the loan for a house is cleared is hugely impacted by the amount of time associated with that particular amount of the loan.</p>
+                <h2 class="mb-5">How to calculate the monthly payment on your car loan?</h2>                  
+                <p>Calculating the monthly payment of car loan is done in the same way you just need to use the above formula and replace the term 'monthly house payment' with 'monthly car loan payment'.</p>
+                <p class="text-md mt-3">For example, car loan of $15,000 with fixed yearly rate of interest of 3.8% for 15 years, the principal is PA=15000, the monthly interest rate for car loan is MI=0.038/12, the number of monthly payments is n=15 * 12 = 180, then monthly payment for car is $109.45.</p>
+                <p class="text-md mt-3">Another example let's say for getting microsoft surface book monthly payment of loan the loan amount or the PA is $2062.39 with yearly rate of interest of 4.2% for 3 years, the principal is PA=$2062.39, the monthly interest rate for microsoft surface book loan is MI=0.042/12, the number of monthly payments is n=3 * 12 = 36, then monthly payment for microsoft surface book is $61.07.</p>
+              </div>
+            </div>
+  
+          </div>
+          <div class="col-lg-4">
+            <div class="widget">
+              <!-- Widget search -->
+              <div class="widget-box">
+                  <button type="button" class="btn btn-primary btn-block">Trending Post</button>
+                <!-- </form> -->
+              </div>
+  
+              <!-- Widget Categories -->
+              <div class="widget-box">
+                <h4 class="widget-title">Category</h4>
+                <div class="divider"></div>
+                <p class="text-lg">Real Estate</p>
+              </div>
+  
+              <!-- Widget recent post -->
+              <div class="widget-box">
+                <h4 class="widget-title">Related</h4>
+                <div class="divider"></div>
+  
+                <div class="blog-item">
+                    <a class="post-thumb" href="">
+                      <img src="../test/assets/img/related/rentop.png" alt="lawnmower that looks like formula one car">
+                    </a>
+                    <div class="content">
+                      <h6 class="post-title"><a href="#">Your Business Race Car</a></h6>
+                    </div>
+                </div>
+  
+              </div>
+  
+  
+            </div>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-3 py-3">
+          <h3>Trinity<span class="text-primary">Prime.</span></h3>
+          <p>Let us know what your think about our blog posts</p>
+
+          <p class="text-md text-info">TrinityPrimequeries@gmail.com</p>
+        </div>
+        <div class="col-lg-3 py-3">
+          <h5>Recommended</h5>
+          <ul class="footer-menu">
+            <li><a href="#">Future Car Value Estimator</a></li>
+            <li><a href="#">House Payment Calculator</a></li>
+            <li><a href="#">How to calculate beta in finance?</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 py-3">
+          <h5>About Us</h5>
+          <ul class="footer-menu">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Popular</a></li>
+            <li><a href="#">Blog Posts</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 py-3">
+          <h5>Subscribe</h5>
+          <form action="https://formspree.io/f/mgedejly" method="POST">
+            <input type="email" name="_replyto" class="form-control" placeholder="Enter your mail..">
+            <button type="submit" class="btn btn-primary rounded-pill mt-4">Subscribe</button>
+          </form>
+
+          <div class="sosmed-button mt-4">
+            <a href="#"><span class="mai-logo-facebook-f"></span></a>
+            <a href="#"><span class="mai-logo-twitter"></span></a>
+            <a href="#"><span class="mai-logo-google"></span></a>
+            <a href="#"><span class="mai-logo-linkedin"></span></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6 py-2">
+          <p id="copyright">&copy;<a href="#">Trinity Prime</a>. All rights reserved</p>
+        </div>
+        <div class="col-sm-6 py-2 text-right">
+          <div class="d-inline-block px-3">
+            <a href="#">Privacy</a>
+          </div>
+          <div class="d-inline-block px-3">
+            <a href="#">Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </div> <!-- .container -->
+  </footer> <!-- .page-footer -->
+
+
+  <script src="../test/assets/js/jquery-3.5.1.min.js"></script>
+
+  <script src="../test/assets/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../test/assets/vendor/wow/wow.min.js"></script>
+
+  <script src="../test/assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
+
+  <script src="../test/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+
+  <script src="../test/assets/vendor/animateNumber/jquery.animateNumber.min.js"></script>
+
+  <script src="../test/assets/js/google-maps.js"></script>
+
+  <script src="../test/assets/js/theme.js"></script>
+
+  <!-- calculator script -->
+  <script src="HousePayment.js"></script>
+</body>
+</html>
